@@ -1,18 +1,18 @@
 import numpy as np
 
 
-def linear_regression_line(data_x : list, data_y : list) -> None:
+def linear_regression_line(independ_var_data : list, dep_var_data : list) -> None:
     sum_of_prod = 0
     sum_x = 0
     sum_y = 0
     sum_of_squares = 0
-    n = len(data_x)
+    n = len(independ_var_data)
     
     for i in range(n):
-        sum_of_prod += (data_x[i] * data_y[i])
-        sum_of_squares +=  ((data_x[i]) ** 2)
-        sum_x += data_x[i]
-        sum_y += data_y[i]
+        sum_of_prod += (independ_var_data[i] * dep_var_data[i])
+        sum_of_squares +=  ((independ_var_data[i]) ** 2)
+        sum_x += independ_var_data[i]
+        sum_y += dep_var_data[i]
         
     """
     linear regression
@@ -26,6 +26,10 @@ def linear_regression_line(data_x : list, data_y : list) -> None:
     B = np.array([[sum_y],[sum_of_prod]])
     X = np.linalg.solve(A, B)
     constant_term = float(X[0]) #constant
-    coefficient_of_x = float(X[1]) #coefficient of x
+    coeff_of_indep_var = float(X[1]) #coefficient of x
     
-    print(f"Regression line: y = {constant_term} + {coefficient_of_x}*x")
+    # print(f"Regression line: y = {constant_term} + {coeff_of_indep_var}*x")
+    return (constant_term, coeff_of_indep_var)
+
+def predict(constant_term : float, coeff_of_indep_var : float, val_of_indep_var) -> float:
+    return constant_term + coeff_of_indep_var * val_of_indep_var
