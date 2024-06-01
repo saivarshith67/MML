@@ -1,8 +1,21 @@
 import regression as rg
+import matplotlib.pyplot as plt
+import numpy as np
 
 if __name__ == '__main__':
-    data_x = [1, 3, 4, 6, 8, 9, 11, 14]
-    data_y = [1, 2, 4, 4, 5, 7, 8, 9]
+    data_x = []
+    data_y = []
+    size = int(input("Enter the number of data points: "))
+
+    print("Enter data for x")
+    for i in range(size):
+        data = float(input("Enter the data: "))
+        data_x.append(data)
+    
+    for i in range(size):
+        data = float(input("Enter the data: "))
+        data_y.append(data)
+        
     constant, coeff = rg.linear_regression_line(data_x, data_y)
-    print(constant, coeff)
-    print(rg.predict(constant_term=constant, coeff_of_indep_var=coeff,val_of_indep_var=14))
+    
+    rg.plot_regression_line(data_x, data_y)

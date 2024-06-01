@@ -22,10 +22,22 @@ def correlation_coefficient(x: list, y: list) -> float:
 
 def main() -> None :
     # Example usage of correlation_coefficient function
-    x = [1, 2, 3, 4, 5]
-    y = [2, 4, 5, 6, 7]
-    print(correlation_coefficient(x, y[::-1]))
+    x = []
+    y = []
+    n = int(input("Enter the number of data points: "))
 
+    print("Enter values for x")
+    for i in range(n):
+        data = float(input("Enter the data: "))
+        x.append(data)
+
+    print("Enter values for y")
+    for i in range(n):
+        data = float(input("Enter the data: "))
+        y.append(data)
+
+    correlation = correlation_coefficient(x, y)
+    print("Correlation coefficient:", correlation)
     
     pass
 

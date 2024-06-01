@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def linear_regression_line(independ_var_data: list, dep_var_data: list) -> tuple:
     """
@@ -46,3 +47,34 @@ def predict(constant_term: float, coeff_of_indep_var: float, val_of_indep_var) -
     :return: Predicted value of dependent variable
     """
     return constant_term + coeff_of_indep_var * val_of_indep_var
+
+
+
+def plot_regression_line(independ_var_data: list, dep_var_data: list) -> None:
+    """
+    This function plots the scatter diagram of the given independent and dependent variable data along with the regression line.
+
+    :param independ_var_data: List of independent variable data
+    :param dep_var_data: List of dependent variable data
+    """
+
+    constant_term, coeff_of_indep_var = linear_regression_line(independ_var_data, dep_var_data)
+
+    x = np.array(independ_var_data)
+    y = np.array(dep_var_data)
+
+    # Scatter plot of the data
+    plt.scatter(x, y, color='b', label='Data')
+
+    # Line of best fit
+    min_x = min(x)
+    max_x = max(x)
+    y_pred = predict(constant_term, coeff_of_indep_var, np.array(range(min_x, max_x+1)))
+    plt.plot(range(min_x, max_x+1), y_pred, color='r', label='Regression Line')
+
+    plt.xlabel('Independent Variable')
+    plt.ylabel('Dependent Variable')
+    plt.title('Scatter Diagram of Data and Regression Line')
+    plt.legend()
+    plt.show()
+
